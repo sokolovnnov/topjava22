@@ -1,7 +1,7 @@
-package ru.javawebinar.topjava.util;
+package main.java.ru.javawebinar.topjava.util;
 
-import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.model.MealTo;
+import main.java.ru.javawebinar.topjava.model.Meal;
+import main.java.ru.javawebinar.topjava.model.MealTo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
