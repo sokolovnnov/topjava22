@@ -1,0 +1,20 @@
+# Project exclude paths
+/out/
+/*.patch
+/.idea/encodings.xml
+/misc.xml
+/.idea/modules.xml
+/topjava22.iml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
+/target/
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/compiler.xml
+/.idea/jarRepositories.xml
+/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml
+/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml
+/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_1.xml
+/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_30.xml
+/.idea/artifacts/topjava22_war.xml
+/.idea/artifacts/topjava22_war_exploded.xml
+/.idea/workspace.xml
