@@ -6,8 +6,8 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 public class ValidationUtil {
 
-    public static <T> T checkNotFoundWithId(T object, int id) {
-        checkNotFoundWithId(object != null, id);
+    public static <T> T checkNotFoundWithId(T object, int id) {   //передается запрос на еду/юзера и ее\его id: return checkNotFoundWithId(repository.get(id), id);
+        checkNotFoundWithId(object != null, id);            //если запрос не null. объект и его id дальше
         return object;
     }
 
