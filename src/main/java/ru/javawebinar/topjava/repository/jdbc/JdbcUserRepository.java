@@ -28,12 +28,16 @@ public class JdbcUserRepository implements UserRepository {
     public JdbcUserRepository(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.insertUser = new SimpleJdbcInsert(jdbcTemplate)
                 .withTableName("users")
-                .usingGeneratedKeyColumns("id");
+                .usingGeneratedKeyColumns("id"); //устанавливает столбец в котором автогенерируется ключ для метода save
 
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+//MapSqlParameterSource - Этот класс предназначен для передачи простой карты значений параметров методам класса NamedParameterJdbcTemplate.
+// Внутри Map<String, Object> values
+
+    // Наполняем эту мапу
     @Override
     public User save(User user) {
         MapSqlParameterSource map = new MapSqlParameterSource()
@@ -46,6 +50,7 @@ public class JdbcUserRepository implements UserRepository {
                 .addValue("caloriesPerDay", user.getCaloriesPerDay());
 
         if (user.isNew()) {
+            //возврат сгенерированного id, для установки в возвращаемый user
             Number newKey = insertUser.executeAndReturnKey(map);
             user.setId(newKey.intValue());
         } else if (namedParameterJdbcTemplate.update(
