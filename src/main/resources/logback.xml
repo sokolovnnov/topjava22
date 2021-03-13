@@ -20,7 +20,12 @@
         </encoder>
     </appender>
 
-    <logger name="ru.javawebinar.topjava" level="debug"/>
+    <logger name="ru.javawebinar.topjava" level="TRACE"/>
+<!--    <logger name="org.hibernate.org.hibernate.SQL" level="TRACE" additivity="false"/>-->
+<!--    <logger name="org.hibernate.type.descriptor.sql" level="TRACE" additivity="true"/>-->
+    <logger name="org.hibernate.type">
+        <level value="TRACE" />
+    </logger>
 
     <root level="info">
         <appender-ref ref="file"/>
