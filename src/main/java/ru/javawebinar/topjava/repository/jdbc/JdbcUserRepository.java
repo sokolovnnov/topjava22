@@ -12,13 +12,19 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Transactional(readOnly = true)
 @Repository
 public class JdbcUserRepository implements UserRepository {
 
     private static final BeanPropertyRowMapper<User> ROW_MAPPER = BeanPropertyRowMapper.newInstance(User.class);
+
+    @Autowired
+    private static UserExtractor USEREXTRACTOR = new UserExtractor();
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -72,8 +78,16 @@ public class JdbcUserRepository implements UserRepository {
         return DataAccessUtils.singleResult(users);
     }
 
+//    @Override
+//    public List<User> getAll() {
+//        return jdbcTemplate.query("SELECT * FROM users ORDER BY name, email", ROW_MAPPER);
+//    }
+
     @Override
     public List<User> getAll() {
-        return jdbcTemplate.query("SELECT * FROM users ORDER BY name, email", ROW_MAPPER);
+        Map<String, User> userMap = jdbcTemplate.query("SELECT * FROM users LEFT JOIN user_roles ur " +
+                                                       "ON users.id = ur.user_id", USEREXTRACTOR);
+        return new ArrayList<User>(userMap.values());
+//        return jdbcTemplate.query("SELECT * FROM users ORDER BY name, email", ROW_MAPPER);
     }
 }

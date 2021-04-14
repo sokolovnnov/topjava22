@@ -30,6 +30,8 @@
                 <td><%=user.isEnabled()%>
                 </td>
                 <td><fmt:formatDate value="${user.registered}" pattern="dd-MM-yyyy"/></td>
+                <td><a href="${pageContext.request.contextPath}/users/updater/${user.id}">Update"</a></td>
+                <td><a href="${pageContext.request.contextPath}/users/delete/${user.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
