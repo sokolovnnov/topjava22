@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava;
 
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.List;
@@ -34,7 +35,12 @@ public class TestMatcher<T> {
     }
 
     public ResultMatcher contentJson(T expected) {
-        return result -> assertMatch(TestUtil.readFromJsonMvcResult(result, clazz), expected);
+        return new ResultMatcher() {
+            @Override
+            public void match(MvcResult result) throws Exception {
+                TestMatcher.this.assertMatch(TestUtil.readFromJsonMvcResult(result, clazz), expected);
+            }
+        };
     }
 
     @SafeVarargs

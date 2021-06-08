@@ -13,14 +13,14 @@ public class TestUtil {
     }
 
     public static <T> T readFromJson(ResultActions action, Class<T> clazz) throws UnsupportedEncodingException {
-        return JsonUtil.readValue(getContent(action.andReturn()), clazz);
+        return JsonUtil.readValue(action.andReturn().getResponse().getContentAsString(), clazz);
     }
 
     public static <T> T readFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
-        return JsonUtil.readValue(getContent(result), clazz);
+        return JsonUtil.readValue(result.getResponse().getContentAsString(), clazz);
     }
 
     public static <T> List<T> readListFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
-        return JsonUtil.readValues(getContent(result), clazz);
+        return JsonUtil.readValues(result.getResponse().getContentAsString(), clazz);
     }
 }
